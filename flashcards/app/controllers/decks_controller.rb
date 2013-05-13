@@ -1,5 +1,6 @@
 class DecksController < ApplicationController
   def index
+    @decks = Deck.all
   end
 
   def new
@@ -9,6 +10,10 @@ class DecksController < ApplicationController
   def create
     Deck.create deck_params
     redirect_to "/decks"
+  end
+
+  def show
+    @deck = Deck.find(params[:id])
   end
 
   private

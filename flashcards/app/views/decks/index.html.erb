@@ -1,3 +1,9 @@
 <h1>Decks</h1>
 
 <%= link_to "New deck", "/decks/new" %>
+
+<% @decks.each do |deck| %>
+  <div class="deck">
+    <%= link_to deck.name, "/decks/#{deck.id}" %>
+  </div>
+<% end %>
