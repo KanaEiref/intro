@@ -16,6 +16,16 @@ class DecksController < ApplicationController
     @deck = Deck.find(params[:id])
   end
 
+  def edit
+    @deck = Deck.find(params[:id])
+  end
+
+  def update
+    deck = Deck.find(params[:id])
+    deck.update deck_params
+    redirect_to "/decks"
+  end
+
   private
 
   def deck_params

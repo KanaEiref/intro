@@ -5,5 +5,7 @@
 <% @decks.each do |deck| %>
   <div class="deck">
     <%= link_to deck.name, "/decks/#{deck.id}" %>
+    -
+    <%= link_to "Edit", "/decks/#{deck.id}/edit" %>
   </div>
 <% end %>

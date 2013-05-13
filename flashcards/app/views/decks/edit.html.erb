@@ -1,0 +1,6 @@
+<h1>Edit <%= @deck.name %></h1>
+
+<%= form_for @deck do |form| %>
+  <%= form.text_field :name %>
+  <%= form.submit %>
+<% end %>
