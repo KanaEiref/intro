@@ -1,1 +1,6 @@
 <h1>New Deck</h1>
+
+<%= form_for @deck do |form| %>
+  <%= form.text_field :name %>
+  <%= form.submit %>
+<% end %>
