@@ -5,4 +5,5 @@ Flashcards::Application.routes.draw do
   post "/decks" => "decks#create"
   get "/decks/:id/edit" => "decks#edit"
   patch "/decks/:id" => "decks#update"
+  delete "/decks/:id" => "decks#destroy"
 end
