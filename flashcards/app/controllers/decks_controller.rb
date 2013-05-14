@@ -14,7 +14,7 @@ class DecksController < ApplicationController
   def create
     @deck = Deck.new(deck_params)
     if @deck.save
-      redirect_to @deck
+      redirect_to @deck, notice: "Deck created!"
     else
       render :new
     end

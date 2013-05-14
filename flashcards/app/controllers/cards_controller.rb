@@ -10,9 +10,13 @@ class CardsController < ApplicationController
   end
 
   def create
-    deck = find_deck
-    create_card(deck)
-    redirect_to deck
+    @deck = find_deck
+    @card = @deck.cards.new(card_params)
+    if @card.save
+      redirect_to @deck, notice: "Card created!"
+    else
+      render :new
+    end
   end
 
   def edit
@@ -46,9 +50,5 @@ class CardsController < ApplicationController
 
   def find_card deck
     deck.cards.find(params[:id])
-  end
-
-  def create_card deck
-    deck.cards.create(card_params)
   end
 end
