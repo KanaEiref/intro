@@ -1,18 +1,20 @@
 class DecksController < ApplicationController
+  before_action :authenticate
+
   def index
-    @decks = Deck.all
+    @decks = current_user.decks
   end
 
   def show
-    @deck = Deck.find(params[:id])
+    @deck = find_deck
   end
 
   def new
-    @deck = Deck.new
+    @deck = current_user.decks.new
   end
 
   def create
-    @deck = Deck.new(deck_params)
+    @deck = current_user.decks.new(deck_params)
     if @deck.save
       redirect_to @deck, notice: "Deck created!"
     else
@@ -21,22 +23,26 @@ class DecksController < ApplicationController
   end
 
   def edit
-    @deck = Deck.find(params[:id])
+    @deck = find_deck
   end
 
   def update
-    deck = Deck.find(params[:id])
+    deck = find_deck
     deck.update deck_params
     redirect_to deck
   end
 
   def destroy
-    deck = Deck.find(params[:id])
+    deck = find_deck
     deck.destroy
     redirect_to decks_path
   end
 
   private
+
+  def find_deck
+    current_user.decks.find(params[:id])
+  end
 
   def deck_params
     params.require(:deck).permit(:name)

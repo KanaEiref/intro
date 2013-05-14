@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(params[:session])
     if user
-      cookies.signed[:user_id] = user.id
+      sign_in user
       redirect_to decks_path
     else
       render :new
@@ -14,6 +14,6 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete(:user_id)
-    redirect_to decks_path
+    redirect_to root_path
   end
 end

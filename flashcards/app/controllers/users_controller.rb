@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.create user_params
+    sign_in user
     redirect_to decks_path, notice: "Signed up!"
   end
 
