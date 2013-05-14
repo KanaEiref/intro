@@ -12,8 +12,12 @@ class DecksController < ApplicationController
   end
 
   def create
-    deck = Deck.create(deck_params)
-    redirect_to deck
+    @deck = Deck.new(deck_params)
+    if @deck.save
+      redirect_to @deck
+    else
+      render :new
+    end
   end
 
   def edit
